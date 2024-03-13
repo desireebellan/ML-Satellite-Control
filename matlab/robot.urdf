@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+
+<robot name="2R_spacecraft">
+
+	<!-- Colors -->
+	<material name = 'Grey'>
+		<color rgba="0.2 0.2 0.2 1.0"/>
+	</material>
+	<material name="Blue">
+ 		<color rgba="0.5 0.7 1.0 1.0"/>      
+  	</material>
+  	<material name="Red">
+  		<color rgba="1.0 0.7 0.5 1.0"/>
+  	</material>
+  	
+  	<!-- Links -->
+  	
+  	<!-- Spacecraft -->
+  	
+  	<link name="Spacecraft">
+  	
+  		<inertial>
+     			<origin rpy="0 0 0" xyz="0 0 0"/>
+      			<mass value="100"/>
+      			<inertia ixx="9.3" ixy="0" ixz="0" iyy="9.3" iyz="0" izz="9.3"/>
+ 		</inertial>
+ 		
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0"/>
+      			<geometry>
+        		<box size="0.5 0.5 0.5" />
+      			</geometry>
+      			<material name="Grey"/>
+ 		</visual>
+  	</link>
+
+
+	<!-- Manipulator-->
+	
+	<!-- Link 1-->
+	<link name="Link_1">
+		<inertial>
+      			<origin rpy="0 0 0" xyz="0 0 0.125"/>
+      			<mass value="5"/>
+      			<inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05"/>
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0.5"/>
+      			<geometry>
+        			<cylinder radius="0.05" length="1"/>
+      			</geometry>
+      			<material name="Blue"/>
+    		</visual>
+	</link>
+	
+	<!-- Link 2 -->
+	
+	<link name="Link_2">
+		<inertial>
+      			<origin rpy="0 0 0" xyz="0 0 0.125"/>
+      			<mass value="5"/>
+      			<inertia ixx="0.05" ixy="0" ixz="0" iyy="0.05" iyz="0" izz="0.05"/>
+    		</inertial>
+    		<visual>
+      			<origin rpy="0 0 0" xyz="0 0 0.5"/>
+      			<geometry>
+        			<cylinder radius="0.05" length="1"/>
+      			</geometry>
+      			<material name="Blue"/>
+    		</visual>
+	</link>
+	
+	<!-- Joints -->
+	
+	<!-- Joint 1 -->
+	<joint name="Joint_1" type="revolute">
+    		<parent link="Spacecraft"/>
+    		<child link="Link_1"/>
+    		<origin rpy="0 0 0" xyz="0 0 0.25"/>
+    		<axis xyz="1 0 0"/>
+    		<limit lower="-3.1416" upper="3.1416" effort="10" velocity="3"/>
+  	</joint>
+  	
+  	<!-- Joint 2 -->
+	<joint name="Joint_2" type="revolute">
+    		<parent link="Link_1"/>
+    		<child link="Link_2"/>
+    		<origin rpy="0 0 0" xyz="0 0 0.25"/>
+    		<axis xyz="1 0 0"/>
+    		<limit lower="-3.1416" upper="3.1416" effort="10" velocity="3"/>
+  	</joint>
+
+</robot>
